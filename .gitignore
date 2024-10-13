@@ -1,0 +1,4 @@
+docker/php/local.ini
+docker-compose.yml
+docker/Dockerfile
+docker/nginx.conf
