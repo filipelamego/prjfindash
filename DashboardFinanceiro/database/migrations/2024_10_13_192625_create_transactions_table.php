@@ -7,12 +7,22 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Executa a migration da tabela transactions
      */
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->unsigned();
+            $table->integer('user_id')->unsigned()
+                ->references('id')
+                ->on('users');
+            $table->integer('category_id')->unsigned()
+                ->references('id')
+                ->on('categories');
+            $table->decimal('amount', 10, 2);
+            $table->date('date');
+            $table->text('description');
+            $table->enum('type', ['income', 'expense']);
             $table->timestamps();
         });
     }
